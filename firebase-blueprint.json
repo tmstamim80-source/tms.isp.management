@@ -1,0 +1,314 @@
+{
+  "entities": {
+    "adminAccount": {
+      "title": "Admin Account",
+      "description": "Administrative account for ISP operations with role-based access",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["Super Admin", "Billing Admin", "Network Admin", "Support Admin", "Accountant", "Reseller"] },
+        "permissions": { "type": "array" },
+        "status": { "type": "string", "enum": ["Active", "Suspended", "Inactive"] },
+        "createdAt": { "type": "string" },
+        "lastLogin": { "type": "string" },
+        "lastPasswordChange": { "type": "string" },
+        "loginCount": { "type": "number" },
+        "resellerId": { "type": "string" },
+        "resellerCode": { "type": "string" }
+      },
+      "required": ["id", "username", "password", "name", "role", "status"]
+    },
+    "reseller": {
+      "title": "Reseller Partner",
+      "description": "Sub-ISP or reseller partner account managing local network zones and subscribers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "ownerName": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "billingType": { "type": "string", "enum": ["prepaid", "postpaid"] },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "area": { "type": "string" },
+        "balance": { "type": "number" },
+        "commissionRate": { "type": "number" },
+        "status": { "type": "string", "enum": ["Active", "Suspended", "Inactive"] },
+        "mikrotikTarget": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "code", "name", "username", "password", "status"]
+    },
+    "resellerTransaction": {
+      "title": "Reseller Wallet Transaction",
+      "description": "Financial ledger entry for reseller balance recharge or customer bill deductions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "resellerId": { "type": "string" },
+        "resellerName": { "type": "string" },
+        "type": { "type": "string", "enum": ["credit", "debit"] },
+        "amount": { "type": "number" },
+        "balanceBefore": { "type": "number" },
+        "balanceAfter": { "type": "number" },
+        "description": { "type": "string" },
+        "customerUid": { "type": "string" },
+        "date": { "type": "string" },
+        "performedBy": { "type": "string" }
+      },
+      "required": ["id", "resellerId", "type", "amount", "date"]
+    },
+    "resellerBalanceRequest": {
+      "title": "Reseller Balance Request",
+      "description": "Balance top-up request submitted by reseller for admin approval",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "resellerId": { "type": "string" },
+        "resellerCode": { "type": "string" },
+        "resellerName": { "type": "string" },
+        "amount": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "senderAccount": { "type": "string" },
+        "transactionId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "requestedAt": { "type": "string" },
+        "approvedAt": { "type": "string" },
+        "adminNotes": { "type": "string" }
+      },
+      "required": ["id", "resellerId", "amount", "paymentMethod", "status", "requestedAt"]
+    },
+    "searchOperator": {
+      "title": "Search Operator",
+      "description": "Dedicated customer search and inquiry desk operator account",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "mobile": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "status": { "type": "string", "enum": ["Active", "Suspended"] },
+        "permissions": { "type": "object" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "loginCount": { "type": "number" },
+        "lastLoginAt": { "type": "string" }
+      },
+      "required": ["id", "name", "username", "password", "status"]
+    },
+    "searchOperatorLog": {
+      "title": "Search Operator Log",
+      "description": "Audit log for operator search portal authentication and inquiries",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "operatorId": { "type": "string" },
+        "operatorName": { "type": "string" },
+        "username": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "status": { "type": "string" },
+        "ipAddress": { "type": "string" },
+        "deviceInfo": { "type": "string" },
+        "action": { "type": "string" }
+      },
+      "required": ["id", "username", "timestamp", "status", "action"]
+    },
+    "adminAuditLog": {
+      "title": "Admin Audit Log",
+      "description": "Security log tracking all administrative actions and logins",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "adminName": { "type": "string" },
+        "username": { "type": "string" },
+        "role": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "action": { "type": "string" },
+        "status": { "type": "string" },
+        "ipAddress": { "type": "string" },
+        "device": { "type": "string" },
+        "details": { "type": "string" }
+      },
+      "required": ["id", "username", "action", "status", "timestamp"]
+    },
+    "customer": {
+      "title": "Customer / Subscriber",
+      "description": "Broadband internet subscriber record with connection, billing and network parameters",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "address": { "type": "string" },
+        "area": { "type": "string" },
+        "packageId": { "type": "string" },
+        "packageName": { "type": "string" },
+        "packageSpeed": { "type": "string" },
+        "monthlyFee": { "type": "number" },
+        "status": { "type": "string", "enum": ["Active", "Suspended", "Pending", "Cancelled"] },
+        "paymentStatus": { "type": "string", "enum": ["Paid", "Due", "Advance"] },
+        "dueAmount": { "type": "number" },
+        "advanceBalance": { "type": "number" },
+        "connectionType": { "type": "string" },
+        "wifiUsername": { "type": "string" },
+        "wifiPassword": { "type": "string" },
+        "ipAddress": { "type": "string" },
+        "resellerId": { "type": "string" },
+        "resellerCode": { "type": "string" },
+        "resellerName": { "type": "string" },
+        "assignedReseller": { "type": "string" },
+        "onuMac": { "type": "string" },
+        "boxNumber": { "type": "string" },
+        "joiningDate": { "type": "string" },
+        "nextPaymentDate": { "type": "string" }
+      },
+      "required": ["id", "uid", "name", "mobile", "status"]
+    },
+    "payment": {
+      "title": "Payment Record",
+      "description": "Customer bill payment receipt and transaction ledger",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerUid": { "type": "string" },
+        "customerName": { "type": "string" },
+        "amount": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "date": { "type": "string" },
+        "collectedBy": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "customerUid", "amount", "date"]
+    },
+    "package": {
+      "title": "Internet Package",
+      "description": "ISP speed, bandwidth and billing rate tier",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "speed": { "type": "string" },
+        "price": { "type": "number" },
+        "category": { "type": "string" },
+        "resellerId": { "type": "string" },
+        "resellerCode": { "type": "string" },
+        "resellerName": { "type": "string" }
+      },
+      "required": ["id", "name", "price"]
+    },
+    "setting": {
+      "title": "System Settings",
+      "description": "Global ISP configuration, profile and OLT settings",
+      "type": "object",
+      "properties": {
+        "companyName": { "type": "string" },
+        "currencySymbol": { "type": "string" }
+      }
+    },
+    "paymentRequest": {
+      "title": "Online Payment Request",
+      "description": "Subscriber online recharge payment verification ticket",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerUid": { "type": "string" },
+        "amount": { "type": "number" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "customerUid", "amount", "status"]
+    },
+    "supportTicket": {
+      "title": "Support Ticket",
+      "description": "Customer complaint or service request ticket",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "issue": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "customerId", "issue", "status"]
+    },
+    "whatsAppLog": {
+      "title": "WhatsApp Message Log",
+      "description": "Record of WhatsApp bill reminders or diagnostic notices sent",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "recipientPhone": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "recipientPhone", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/admin_accounts/{id}": {
+      "schema": "adminAccount",
+      "description": "Admin accounts with role-based permissions created by CEO TM"
+    },
+    "/resellers/{id}": {
+      "schema": "reseller",
+      "description": "Reseller partner accounts with wallet balance and assigned network area"
+    },
+    "/reseller_transactions/{id}": {
+      "schema": "resellerTransaction",
+      "description": "Reseller wallet transaction history"
+    },
+    "/reseller_balance_requests/{id}": {
+      "schema": "resellerBalanceRequest",
+      "description": "Reseller balance top-up requests"
+    },
+    "/search_operators/{id}": {
+      "schema": "searchOperator",
+      "description": "Dedicated customer search operators created by CEO TM"
+    },
+    "/search_operator_logs/{id}": {
+      "schema": "searchOperatorLog",
+      "description": "Search operator session and inquiry logs"
+    },
+    "/admin_audit_logs/{id}": {
+      "schema": "adminAuditLog",
+      "description": "Administrative audit and security event logs"
+    },
+    "/customers/{id}": {
+      "schema": "customer",
+      "description": "Internet subscribers and network customer profiles"
+    },
+    "/payments/{id}": {
+      "schema": "payment",
+      "description": "Bill payments and collection vouchers"
+    },
+    "/packages/{id}": {
+      "schema": "package",
+      "description": "Broadband and hotspot service packages"
+    },
+    "/settings/{id}": {
+      "schema": "setting",
+      "description": "ISP company profile and global configuration documents"
+    },
+    "/payment_requests/{id}": {
+      "schema": "paymentRequest",
+      "description": "Subscriber payment and recharge claims"
+    },
+    "/support_tickets/{id}": {
+      "schema": "supportTicket",
+      "description": "Customer technical support and network complaints"
+    },
+    "/whatsapp_logs/{id}": {
+      "schema": "whatsAppLog",
+      "description": "SMS and WhatsApp notification delivery logs"
+    }
+  }
+}

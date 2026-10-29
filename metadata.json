@@ -1,0 +1,6 @@
+{
+  "name": "WiFi Customer Management System",
+  "description": "Commercial-grade ISP & WiFi customer management system with public UID/mobile search, admin dashboard, analytics, real-time Firestore database, and billing management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

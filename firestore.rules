@@ -1,0 +1,95 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Test connection endpoint
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+
+    // Admin accounts created & managed by CEO TM
+    match /admin_accounts/{adminId} {
+      allow read, write: if true;
+    }
+
+    // Admin audit logs for security tracking
+    match /admin_audit_logs/{logId} {
+      allow read, write: if true;
+    }
+
+    // Resellers & Sub-ISPs created & managed by CEO / Super Admin
+    match /resellers/{resellerId} {
+      allow read, write: if true;
+    }
+
+    // Reseller wallet transactions
+    match /reseller_transactions/{txId} {
+      allow read, write: if true;
+    }
+
+    // Reseller balance top-up requests
+    match /reseller_balance_requests/{reqId} {
+      allow read, write: if true;
+    }
+
+    // Search Desk Operators created & permitted by CEO TM
+    match /search_operators/{opId} {
+      allow read, write: if true;
+    }
+
+    // Search Operator audit & session logs
+    match /search_operator_logs/{logId} {
+      allow read, write: if true;
+    }
+
+    // Customers / Subscribers database
+    match /customers/{customerId} {
+      allow read, write: if true;
+    }
+
+    // Payment receipts & ledger entries
+    match /payments/{paymentId} {
+      allow read, write: if true;
+    }
+
+    // ISP Internet packages
+    match /packages/{packageId} {
+      allow read, write: if true;
+    }
+
+    // System settings, ISP profile & OLT configs
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+
+    // Online payment verification requests
+    match /payment_requests/{requestId} {
+      allow read, write: if true;
+    }
+
+    // Customer support & complaints tickets
+    match /support_tickets/{ticketId} {
+      allow read, write: if true;
+    }
+
+    // WhatsApp and SMS notification logs
+    match /whatsapp_logs/{logId} {
+      allow read, write: if true;
+    }
+
+    // MikroTik Routers & Credentials - Protected against direct client reads to ensure zero secret leakage
+    match /mikrotik_routers/{routerId} {
+      allow read, write: if false;
+    }
+
+    // MikroTik Audit Logs
+    match /mikrotik_logs/{logId} {
+      allow read, write: if false;
+    }
+
+    // Default deny for any unhandled collection
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark-primary: #070b14;
+    --bg-dark-surface: #0e1526;
+    --bg-dark-elevated: #162035;
+    --bg-colorful-primary: #0a0e27;
+    --bg-colorful-surface: #12183a;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    background-color: #070b14;
+    color: #f1f5f9;
+  }
+  
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Dynamic Best Wallpaper Backgrounds */
+.bg-theme-black {
+  background: radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 85% 25%, rgba(99, 102, 241, 0.09) 0%, transparent 45%),
+              radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+              #070b14;
+  background-attachment: fixed;
+}
+
+.bg-theme-colorful {
+  background: radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.18) 0%, transparent 45%),
+              radial-gradient(circle at 90% 15%, rgba(168, 85, 247, 0.22) 0%, transparent 45%),
+              radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.12) 0%, transparent 55%),
+              radial-gradient(circle at 80% 85%, rgba(6, 182, 212, 0.18) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+              linear-gradient(135deg, #0b0f19 0%, #0d1527 50%, #111a36 100%);
+  background-attachment: fixed;
+}
+
+/* Subtle Cyber Grid Overlay */
+.cyber-grid-overlay {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* Glassmorphism Classes */
+.glass-panel-dark {
+  background: rgba(14, 21, 38, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-panel-colorful {
+  background: rgba(18, 24, 58, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(7, 11, 20, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.7);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.8);
+}

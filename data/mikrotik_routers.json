@@ -1,0 +1,52 @@
+[
+  {
+    "id": "router-core-ccr",
+    "name": "Tamim Core CCR2004 (Main BDIX & Gateway)",
+    "host": "103.147.168.10",
+    "port": 8728,
+    "useSsl": false,
+    "username": "tamim_admin",
+    "password": "991bf7cb56c6d86a49fbdd16e64855e5:e55f8fef196fbb0f4bce2cd0080417e9",
+    "hasPassword": true,
+    "status": "offline",
+    "lastChecked": "2026-10-28T03:13:19.955Z",
+    "assignedResellerIds": [
+      "all"
+    ],
+    "allowedFeatures": [
+      "pppoe",
+      "hotspot",
+      "traffic",
+      "profiles",
+      "active_sessions"
+    ],
+    "createdAt": "2026-10-28T03:12:45.668Z",
+    "updatedAt": "2026-10-28T03:12:45.668Z",
+    "lastError": "সংযোগ সময়সীমা উত্তীর্ণ (Timeout) - রাউটার 103.147.168.10:8728 থেকে কোনো সাড়া পাওয়া যায়নি। রাউটার অফলাইন হতে পারে বা ফায়ারওয়াল পোর্ট ৮৭২৮ ব্লক করছে।"
+  },
+  {
+    "id": "router-reseller-hub-01",
+    "name": "North Zone CCR - Reseller Hub 1",
+    "host": "103.147.168.12",
+    "port": 8728,
+    "useSsl": false,
+    "username": "api_reseller",
+    "password": "860c12637af5e72075a2e40b4bf16a37:a5b14a1b7f4e8662e4fc81e31edf10b9cbe9f3c995fa793274f78f174622a4eb",
+    "hasPassword": true,
+    "status": "offline",
+    "lastChecked": "2026-10-28T03:12:45.668Z",
+    "assignedResellerIds": [
+      "RES-01",
+      "reseller-active",
+      "reseller-1"
+    ],
+    "allowedFeatures": [
+      "pppoe",
+      "active_sessions",
+      "traffic",
+      "profiles"
+    ],
+    "createdAt": "2026-10-28T03:12:45.668Z",
+    "updatedAt": "2026-10-28T03:12:45.668Z"
+  }
+]
